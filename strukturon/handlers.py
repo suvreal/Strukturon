@@ -3,9 +3,6 @@ from json_file_handler import process_json
 from logger import LOGGER
 
 
-OUTPUT_PATH_HTML = '../output/output.html'  # FIXME: add as arg
-
-
 def process_input_filepath(input_data_file: list[str]) -> Optional[str]:
     """ Takes input data file to process.
 
@@ -25,7 +22,7 @@ def process_read_file(input_file_name_path: str):
     :return: none or data.
     """
 
-    with open(input_file_name_path, 'r') as f:
+    with open(input_file_name_path, "r", encoding='utf-8') as f:
         lines = f.readlines()
         print(lines)
 
@@ -39,7 +36,7 @@ def perform_html_output(html_input: str, output_data_file: str):
     """
 
     LOGGER.info("writing out HTML into "+output_data_file+" file")
-    func = open(output_data_file, "w")
+    func = open(output_data_file, "w", encoding='utf-8')
     func.write(html_input)
     func.close()
 
@@ -58,9 +55,9 @@ def process_input(input_suffix: str, input_data_file: str, output_data_file: str
         import pdb
         pdb.set_trace()
 
-    if input_suffix == '.txt':
-        LOGGER.info("is TEXT file type")
-        # process_txt(input_data_file)
+    if input_suffix == '.csv':
+        LOGGER.info("is CSV file type")
+        # process_txt(input_data_file)  # TODO: finish TEXT processing
     elif input_suffix == '.json':
         LOGGER.info("is JSON file type")
         data_process_return = process_json(input_data_file)
@@ -68,7 +65,7 @@ def process_input(input_suffix: str, input_data_file: str, output_data_file: str
             perform_html_output(data_process_return, output_data_file)
     elif input_suffix == '.xml':
         LOGGER.info("is XML file type")
-        # process_xml(input_data_file)
+        # process_xml(input_data_file) # TODO: finish XML processing
     else:
         LOGGER.error("unknown file type")
 

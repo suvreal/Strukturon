@@ -34,8 +34,6 @@ def parse_arguments() -> Namespace:
 
 def main():
     args = parse_arguments()
-    # print(args.output_filename)
-    # exit(1)
     env_filepath = args.filename  # filepath to process
     env_output_filename = args.output_filename
     env_debug = args.debug  # if to show debug
